@@ -7,6 +7,7 @@ import 'package:flutter_bloc_login_example/bloc/auth/auth_event.dart';
 import 'package:flutter_bloc_login_example/bloc/auth/auth_state.dart';
 import 'package:flutter_bloc_login_example/shared/colors.dart';
 import 'package:flutter_bloc_login_example/shared/components.dart';
+import 'package:flutter_bloc_login_example/webview.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -143,7 +144,13 @@ class _LoginScreenState extends State<LoginScreen> {
           //         builder: (context) => Loged2(
           //               location: state.location,
           //             )));
-          Navigator.pushNamed(context, '/loged2', arguments: state.location);
+          // Navigator.pushNamed(context, '/loged2', arguments: state.location);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NewWebView(
+                        location: state.location,
+                      )));
         } else {
           return ButtonLogin(
             backgroundColor: Colors.white,

@@ -28,6 +28,8 @@ class RouteGenerator {
       //           ));
       case '/':
         return MaterialPageRoute(builder: (_) => Application());
+      case '/webview':
+        return MaterialPageRoute(builder: (_) => Application());
       case '/loged2':
         // Validation of correct data type
         if (args is String) {
@@ -84,7 +86,7 @@ class Application extends StatelessWidget {
         color: Colors.white,
         debugShowCheckedModeBanner: false,
         title: 'Bloc Login Demo',
-        home: FirstScreen(),
+        home: LoginScreen(),
       ),
     );
   }

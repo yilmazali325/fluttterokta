@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: InkWell(
           onTap: () => BlocProvider.of<BlocAuth>(context).add(LogoutEvent()),
           child: Text(
-            "Logout",
+            widget.location,
             style: TextStyle(
                 fontSize: 26,
                 decoration: TextDecoration.underline,
