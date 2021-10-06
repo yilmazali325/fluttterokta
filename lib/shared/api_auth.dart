@@ -5,7 +5,7 @@ import 'ApiClient.dart';
 
 class ApiAuth {
   final apiClient = ApiClient();
-  final Uri api = Uri.parse('https://dev-61149770.okta.com/api/v1/authn');
+  final Uri api = Uri.parse('https://dev-68546164.okta.com/api/v1/authn');
   Future login(String email, String password) async {
     String _token;
     Map<String, String> body = {"username": email, "password": password};
