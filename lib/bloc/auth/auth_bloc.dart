@@ -22,6 +22,12 @@ class BlocAuth extends Bloc<AuthEvent, AuthState> {
             .login("iron_man@example.com", "marvel_2021");
 
         yield LogedState(location: location);
+      } else if (event is SecondCallEvent) {
+        yield LoadingLogoutState();
+        // TokenResponse tokenResponse =
+        //     await Locator.instance.get<ApiAuth>().secondCall(event.authCode);
+
+        yield UnlogedState();
       } else if (event is LogoutEvent) {
         yield LoadingLogoutState();
         await Locator.instance.get<ApiAuth>().logout();
@@ -44,8 +50,6 @@ class BlocAuth extends Bloc<AuthEvent, AuthState> {
         yield LoadedSignUpState();
       } else if (event is ForgotPasswordEvent) {
         yield LoadingForgotPasswordState();
-
-        await Locator.instance.get<ApiAuth>().changePassword();
 
         yield LoadedForgotPasswordState();
       } else if (event is ResendCodeEvent) {

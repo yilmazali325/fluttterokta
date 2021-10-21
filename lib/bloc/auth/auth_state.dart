@@ -1,3 +1,5 @@
+import 'package:flutter_bloc_login_example/model/token_response.dart';
+
 abstract class AuthState {}
 
 class LoadingLogoutState extends AuthState {}
@@ -6,7 +8,11 @@ class LoadingLoginState extends AuthState {}
 
 class ForcingLoginState extends AuthState {}
 
-class UnlogedState extends AuthState {}
+class UnlogedState extends AuthState {
+  final TokenResponse tokenResponse;
+
+  UnlogedState({this.tokenResponse});
+}
 
 class LogedState extends AuthState {
   String location;

@@ -28,11 +28,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _logout() {
     return BlocBuilder<BlocAuth, AuthState>(condition: (previousState, state) {
-      if (state is UnlogedState) {
-        Navigator.pushReplacement(context, FadeRoute(page: LoginScreen()));
-      }
+      // if (state is UnlogedState) {
+      //   Navigator.pushReplacement(context, FadeRoute(page: LoginScreen()));
+      // }
       return;
     }, builder: (context, state) {
+      if (state is UnlogedState) {
+        return Center(
+          child: InkWell(
+            onTap: () => BlocProvider.of<BlocAuth>(context).add(
+                SecondCallEvent(authCode: state.tokenResponse.access_token)),
+            child: Text(
+              widget.location,
+              style: TextStyle(
+                  fontSize: 26,
+                  decoration: TextDecoration.underline,
+                  color: Colors.white),
+            ),
+          ),
+        );
+      }
       if (state is LoadingLogoutState) {
         return SizedBox(
           child: SpinKitWave(
@@ -42,7 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       return Center(
         child: InkWell(
-          onTap: () => BlocProvider.of<BlocAuth>(context).add(LogoutEvent()),
+          onTap: () => BlocProvider.of<BlocAuth>(context)
+              .add(SecondCallEvent(authCode: widget.location)),
           child: Text(
             widget.location,
             style: TextStyle(

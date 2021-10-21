@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_login_example/bloc/auth/auth_bloc.dart';
@@ -9,7 +7,6 @@ import 'package:flutter_bloc_login_example/shared/colors.dart';
 import 'package:flutter_bloc_login_example/shared/components.dart';
 import 'package:flutter_bloc_login_example/webview.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -126,8 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buttonLogin() {
-    final Completer<WebViewController> _controller =
-        Completer<WebViewController>();
     return BlocBuilder<BlocAuth, AuthState>(
       builder: (context, state) {
         if (state is LoadingLoginState) {

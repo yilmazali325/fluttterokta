@@ -30,15 +30,15 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Application());
       case '/webview':
         return MaterialPageRoute(builder: (_) => Application());
-      case '/loged2':
-        // Validation of correct data type
-        if (args is String) {
-          return MaterialPageRoute(
-            builder: (_) => Loged2(
-              location: args,
-            ),
-          );
-        }
+        // case '/loged2':
+        //   // Validation of correct data type
+        //   if (args is String) {
+        //     return MaterialPageRoute(
+        //       builder: (_) => Loged2(
+        //         location: args,
+        //       ),
+        //     );
+        //   }
         // If args is not of the correct type, return an error page.
         // You can also throw an exception while in development.
         return _errorRoute();

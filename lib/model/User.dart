@@ -5,6 +5,7 @@ class User {
   final String lastName;
   final String locale;
   final String timeZone;
+  final String sessionToken;
 
   User(
       {this.id,
@@ -12,7 +13,8 @@ class User {
       this.firstName,
       this.lastName,
       this.locale,
-      this.timeZone});
+      this.timeZone,
+      this.sessionToken});
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -29,10 +31,12 @@ class User {
         firstName = data['firstName'],
         lastName = data['lastName'],
         locale = data['locale'],
+        sessionToken = data['sessionToken'],
         timeZone = data['timeZone'];
 
   User.fromApiResponse(Map<String, dynamic> data)
       : id = data['_embedded']['user']['id'],
+        sessionToken = data['sessionToken'],
         login = data['_embedded']['user']['profile']['login'],
         firstName = data['_embedded']['user']['profile']['firstName'],
         lastName = data['_embedded']['user']['profile']['lastName'],

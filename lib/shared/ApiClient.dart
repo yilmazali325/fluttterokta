@@ -16,4 +16,10 @@ class ApiClient extends http.BaseClient {
     request.headers.addAll(headers);
     return _httpClient.send(request);
   }
+
+  Future<http.StreamedResponse> send2(
+      http.BaseRequest request, Map<String, String> header) {
+    request.headers.addAll(header);
+    return _httpClient.send(request);
+  }
 }

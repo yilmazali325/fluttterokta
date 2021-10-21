@@ -15,4 +15,9 @@ class ResendCodeEvent extends AuthEvent {
   ResendCodeEvent({this.email});
 }
 
+class SecondCallEvent extends AuthEvent {
+  final authCode;
+  SecondCallEvent({this.authCode});
+}
+
 class ResetStateEvent extends AuthEvent {}
