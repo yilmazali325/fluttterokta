@@ -17,7 +17,7 @@ import 'ApiClient.dart';
 class ApiAuth {
   final apiClient = ApiClient();
   Map<String, String> requestHeaders = {
-    'Authorization': 'SSWS 00Vab03YlBpKaQs1HYyGZ9hvWe_iilnGwQyVJnC5gB',
+    'Authorization': 'SSWS ',
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   };
@@ -39,9 +39,7 @@ class ApiAuth {
   Future getSesionToken() async {
     //For more info https://developer.okta.com/docs/reference/api/authn/#primary-authentication
     final Uri authnApi = Uri.parse('https://idm-dev.assurant.com/api/v1/authn');
-    Map<String, String> requestHeaders = {
-      'Authorization': 'SSWS 00Vab03YlBpKaQs1HYyGZ9hvWe_iilnGwQyVJnC5gB'
-    };
+    Map<String, String> requestHeaders = {'Authorization': 'SSWS '};
     Map<String, String> authnBody = {
       "username": "VII__ali2@example.com",
       "password": "Marvel_2021"
@@ -69,9 +67,7 @@ class ApiAuth {
       'response_mode': 'form_post',
       'sessionToken': sessionToken
     };
-    Map<String, String> requestHeaders = {
-      'Authorization': 'SSWS 00Vab03YlBpKaQs1HYyGZ9hvWe_iilnGwQyVJnC5gB'
-    };
+    Map<String, String> requestHeaders = {'Authorization': 'SSWS '};
     final authCodeUri = Uri.https('idm-dev.assurant.com',
         '/oauth2/v1/authorize', queryParametersForAuthCode);
     final authTokenResponse =
@@ -316,7 +312,7 @@ class ApiAuth {
     } catch (e) {
       print(e);
     }
-    
+
     print(response);
     return userDetails;
   }
