@@ -22,18 +22,35 @@ class ApiAuth {
     'Content-Type': 'application/json'
   };
   Future login(String email, String password) async {
-    await getUserWithId("00u125ebtz29gWDQr0h8");
+    //await getUserWithId("00u125ebtz29gWDQr0h8");
     //await changePassword("00u125ebtz29gWDQr0h8", "MArvel_2021", "Marvel_2021");
     //await deactivateUser("00u12amj0xpexfNJS0h8");
     //await deleteUser("00u1292pb44t5YnZU0h8");
     //First call to get session token
-    //User _user = await getSesionToken();
+    User _user = await getSesionToken();
     //Get authCode to make the token
-    //String authCode = await getAuthCode(_user.sessionToken);
+    String authCode = await getAuthCode(_user.sessionToken);
     //If you wanna reset the password
     //resetPassword(_user.id);
-    //TokenResponse tokenResponse = await getAccessToken(authCode);
+    TokenResponse tokenResponse = await getAccessToken(authCode);
+    await call(tokenResponse.access_token);
     //return tokenResponse.access_token;
+  }
+
+  Future call(String accessToken) async {
+    final Uri authnApi = Uri.parse('http://localhost:3000/users');
+    Map<String, String> requestHeaders = {
+      'Authorization': 'Bearer $accessToken',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    var response;
+    try {
+      response = await apiClient.get(authnApi, headers: requestHeaders);
+    } catch (e) {
+      print(e);
+    }
+    print(response);
   }
 
   Future getSesionToken() async {
@@ -299,23 +316,23 @@ class ApiAuth {
     return userDetails;
   }
 
-  Future getAllUsers(int limit) async {
-    final queryParametersGetAllUsers = {
-      'limit': limit,
-    };
-    final getUsersUri = Uri.https(
-        'idm-dev.assurant.com', '/api/v1/users', queryParametersGetAllUsers);
+  // Future getAllUsers(int limit) async {
+  //   final queryParametersGetAllUsers = {
+  //     'limit': limit,
+  //   };
+  //   final getUsersUri = Uri.https(
+  //       'idm-dev.assurant.com', '/api/v1/users', queryParametersGetAllUsers);
 
-    var response;
-    try {
-      response = await apiClient.get(getUsersUri, headers: requestHeaders);
-    } catch (e) {
-      print(e);
-    }
+  //   var response;
+  //   try {
+  //     response = await apiClient.get(getUsersUri, headers: requestHeaders);
+  //   } catch (e) {
+  //     print(e);
+  //   }
 
-    print(response);
-    return userDetails;
-  }
+  //   print(response);
+  //   return userDetails;
+  // }
 
   Future logout() async {
     await Future.delayed(Duration(seconds: 1));
